@@ -16,11 +16,15 @@ Daily ingest from the [EEA Bathing Water Directive](https://water.europa.eu/fres
 
 1. Create a new Railway project, add the Postgres plugin.
 2. From the Railway dashboard, open the Postgres service → **Connect** → copy the public `DATABASE_URL`.
-3. Run the schema:
+3. Put the `DATABASE_URL` into `.env.local` (step 3 below), then run the schema:
 
    ```bash
-   psql "$DATABASE_URL" -f sql/001_init.sql
+   npm run db:init
    ```
+
+   (Uses a tiny Node script — no `psql` required. Needs Node 20.6+ for `--env-file`.)
+
+   Alternatively, paste the contents of `sql/001_init.sql` into Railway's Postgres **Query** tab.
 
 ### 2. Mapbox token
 

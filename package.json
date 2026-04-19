@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "db:init": "psql \"$DATABASE_URL\" -f sql/001_init.sql"
+    "db:init": "node --env-file=.env.local scripts/db-init.mjs"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.59.0",
