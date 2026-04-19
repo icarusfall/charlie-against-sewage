@@ -14,8 +14,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className="h-screen w-screen overflow-hidden">{children}</body>
+    <html lang="en" style={{ height: "100%" }}>
+      <body
+        className="h-screen w-screen overflow-hidden"
+        style={{ height: "100vh", width: "100vw", overflow: "hidden", margin: 0 }}
+      >
+        {children}
+      </body>
     </html>
   );
 }

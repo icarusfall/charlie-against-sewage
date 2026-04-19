@@ -18,7 +18,10 @@ export default function Page() {
 
   return (
     <QueryClientProvider client={client}>
-      <main className="relative h-full w-full">
+      <main
+        className="relative h-full w-full"
+        style={{ position: "relative", height: "100%", width: "100%" }}
+      >
         <Map />
         <div className="pointer-events-none absolute top-4 left-4 z-10">
           <div className="pointer-events-auto rounded-xl bg-white/85 p-4 shadow-xl backdrop-blur-md">

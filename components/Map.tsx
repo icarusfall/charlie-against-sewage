@@ -38,27 +38,18 @@ export default function Map() {
 
     const map = new mapboxgl.Map({
       container: containerRef.current,
-      style: "mapbox://styles/mapbox/standard",
+      style: "mapbox://styles/mapbox/dark-v11",
       center: [-2.5, 46],
       zoom: 4.4,
-      pitch: 20,
       attributionControl: false,
     });
+
+    map.on("error", (e) => console.error("[mapbox]", e.error ?? e));
 
     map.addControl(
       new mapboxgl.AttributionControl({ compact: true }),
       "bottom-right",
     );
-
-    map.on("style.load", () => {
-      try {
-        map.setConfigProperty("basemap", "lightPreset", "dusk");
-        map.setConfigProperty("basemap", "showPointOfInterestLabels", false);
-      } catch {
-        // older style versions just ignore
-      }
-    });
-
     map.addControl(new mapboxgl.NavigationControl(), "top-right");
 
     const updateBbox = () => {
@@ -184,7 +175,13 @@ export default function Map() {
     else map.once("style.load", apply);
   }, [data]);
 
-  return <div ref={containerRef} className="absolute inset-0" />;
+  return (
+    <div
+      ref={containerRef}
+      className="absolute inset-0"
+      style={{ position: "absolute", inset: 0 }}
+    />
+  );
 }
 
 function escapeHtml(s: string): string {
